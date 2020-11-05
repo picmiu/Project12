@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        let persons = [];
+        $(document).ready(function () {
+            $('#ok').on('click', function () {
+                let name = $('input[name="name"]').val();
+                let age = $('input[name="age"]').val();
+                let score = $('input[name="score"]').val();
+                let s = $('input[name="score"]').val();
+
+                let person = {};
+                person.name = name;
+                person.age = age;
+                person.score = score;
+                person.event = event;
+                persons.push(person);
+
+                console.log(person);
+            
+            });
+            //  생성버튼 클릭 이벤트
+            $('#create').on('click', function() {
+                persons.forEach(function (item, idx) {
+                    let tr = $('<tr />');
+                    for (field in item) {
+                        tr.append($('<td />').html(item[field]));
+                    }
+                    let btn = $('<button />').html('OK');
+                    btn.click(function () {
+                        let tbl = $('#tbl');
+                        console.log($(tbl).find('td:eq(0)').html());
+                        //  $(this).parentsUntil('tbody').remove();
+                    });
+                    tr.append($('<td />').append(btn));
+                    $('#tb1').append(tr);
+                });
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div id="input">
+        <input type="text" name="name" value="yum">
+        <input type="text" name="age" value="28">
+        <input type="text" name="score" value="100">
+        <button id="ok">OK</button>
+    </div>
+    <button id="create">생성</button>
+    <div id="show">
+        <table id="tbl" border="1">
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>점수</th>
+                <th>이벤트</th>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

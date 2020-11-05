@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>public/jquery_input.html</title>
+    <style>
+        input {
+            display: block;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function () {
+            $('#ok').on('click', function () {
+                let title = $('input[name="title"]').val();
+                let content = $('input[name="content"]').val();
+                let writer = $('input[name="writer"]').val();
+
+
+                let table = $('<table />').html(title + ", " + content + ", " + writer);
+
+
+                $('#result').append(table);
+
+           });
+        });
+    $('td:first-child').c
+
+    </script>
+
+</head>
+<body>
+
+     <div id="input">
+          <input type="text" name="title">
+          <input type="text" name='content'>
+          <input type="text" name='writer'>
+          <button id="ok"> 출력하라고 </button>
+     </div>
+     <div id="result"></div>
+     <div>
+     <table id = "tab" border="1">
+          <tr>
+               <th>---1---</th>
+               <th>---2---</th>
+               <th>---3---</th>
+          </tr>
+     </table>
+     <th>
+     </div>
+
+
+</body>
+</html>

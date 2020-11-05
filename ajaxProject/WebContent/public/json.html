@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>public/json.html</title>
+</head>
+
+<body>
+    <script>
+        //  json -> obj -> json
+
+        console.log(obj.showinfo());
+        let json = {
+            name: "hong",
+            age: 10,
+            marriage: true,
+            birth : new Date(), 
+            showInfo: function() {
+                return "name: " + this.name + ", age: " + this.age;
+            }
+        }
+        //  console.log(obj);
+        let json = JSON.stringify(obj, ["name", "age"]);
+        console.log(json);
+        //  obj = JSON.parse(json, (k, v) => {
+        //      return (k == "birth") ? new Date(v) : v;
+        //  });
+        //  console.log(obj);
+    </script>
+</body>
+
+</html>

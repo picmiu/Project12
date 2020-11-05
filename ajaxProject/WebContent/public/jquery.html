@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>public/jquery.html</title>
+    <script src="jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <div id="show">
+        <ul>
+            <li>One</li>
+            <li>Two</li>
+            <li>Three</li>
+            <!-- <li><Four</li> -->
+        </ul>
+    </div>
+    <!--
+    <div id="fruits">
+        <li>apple</li>
+        <li>banana</li>
+        <li>mango</li>
+    </div>
+    -->
+    <script>
+        //  $("#show>ul>li").eq(0).html('Hello');    //document.getElementById('show').innerHTML = 'Hello';
+        //  let lis = document.querySelectorAll("show>ul>li");
+        //  lis[0].innerHTML = 'Hello';
+        $("#show>ul").append($("<li />").html("Four"));
+        $("#show").attr("name","hong").attr("class", "content");
+
+        let fruits = ['apple', 'banana', 'mango'];
+
+        let div = $('<div />').attr('id', 'fruits');
+        let ul = $('<ul />');
+        div.append(ul);
+        for (fruit of fruits) {
+            ul.append($('<li />').html(fruit));
+        }
+
+        $('#show').after(div);
+    </script>
+</body>
+</html>

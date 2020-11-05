@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      let resultAry = [
+      	['Dept', 'Members Dept']
+      	];
+      let xhtp = new XMLHttpRequest();
+      xhtp.onreadystatechange = function() {
+    	  if(xhtp.readyState == 4 && xhtp.status == 200) {
+    		  let data = xhtp.response;
+    		  for(let i=0; i<data.length; i++) {
+    			  for(field in data[i]){
+    				  iAry.push(field);		//iAry의 배열에 필드 추가.
+    				  iAry.push(data[i][field]);	//iAry의 배열에 필드[값] 추가.
+    			  }
+    			  resultAry.push(iAry);
+    		  }
+    		  console.log(resultAry);
+    	   }	  
+      }
+      xhtp.open('get', '../GetMemberPerDeptServ');
+      xhtp.send();
+      xhtp.responseType = 'json';
+      
+      google.charts.load('current', {
+    	  'packages':['corechart']
+      });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+		var temp = [
+	          ['Task', 'Hours per Day'],
+	          ['코딩', 11],
+	          ['식사', 2],
+	          ['휴식', 2],
+	          ['독서', 2],
+	          ['취침', 7]
+	        ];
+			temp = resultAry;
+		
+        var data = google.visualization.arrayToDataTable(temp);
+
+        var options = {
+          title: '생활표',
+        	  is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+<body>
+  <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+</body>
+</html>

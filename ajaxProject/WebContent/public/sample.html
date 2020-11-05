@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>public/sample.html</title>
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function () {
+$.ajax({
+	url:"MOCK_DATA.json",
+	success:function(data) {
+		for(obj of data){
+			createTable(obj);
+		}
+	}
+});
+function createTable(data) {
+		let tr = $('<tr />');
+		let td =  $('<td />').append($('<input/>').attr('type','checkbox'));
+			tr.append(td);
+	
+		 for (field in data) {
+             tr.append($('<td />').html(data[field]));  
+		 }
+		 	td =  $('<td />').append($('<button/>').html('삭 제').attr('class', 'delete'));
+		 	tr.append(td);
+		 $('#tbl').append(tr);
+}
+
+$('.delete').on('click', function() {
+	
+	   
+})
+});
+</script>
+</head>
+<body>
+	<div class="wrap"></div>
+	<button id="btn">삭 제</button>
+	<table id='tbl' border='1'>
+	<tr>
+		<td><input type="checkbox"></td>
+		<td>id</td>
+		<td>first_name</td>
+		<td>last_name</td>
+		<td>email</td>
+		<td>gender</td>
+		<td>ip_address</td>
+		<td>기 능</td>
+		</tr>
+	</table>
+</body>
+</html>

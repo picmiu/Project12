@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>jquery_index.html</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src ="js/index.js"></script>
+	<script>
+		//	ajax 호출 결과를 #result 보여주도록 !
+$(document).ready(function() {
+		$.ajax({
+			url: 'GetEmployeeListServ',
+			success: showList,
+			error: function (reject) {
+				console.log(new Error('실행중 에러발생'));
+			},
+			dataType: 'json'
+		});
+	});
+	</script>
+	<style>
+		div#result {
+			display: inline-block;
+			width: 200px;
+			border: 1px solid yellow;
+		}
+
+		div#detail {
+			position: absolute;
+			right: 0;
+			display: inline-block;
+			width: 250px;
+			border: 1px solid yellow;
+		}
+
+		label {
+			display: inline-block;
+			width: 60px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Hello, 윰</h1>
+	<div id="result"></div>
+	<div id="detail">
+		<p>상세정보</p>
+		<label for="id">Id:</label>
+		<input type="text" name="id" id="eid" value="100"><br>
+
+		<label for="fName">FName:</label>
+		<input type="text" name="fName" id="efName" value="100"><br>
+
+		<label for="lName">LName:</label>
+		<input type="text" name="lName" id="elName" value="100"><br>
+
+		<label for="email">Email:</label>
+		<input type="text" name="email" id="eemail" value="100"><br>
+
+		<label for="salary">Salary:</label>
+		<input type="text" name="salary" id="esalary" value="100"><br>
+	</div>
+
+	<script>
+
+
+	</script>
+</body>
+
+</html>
