@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>book.html</title>
+<link rel="shortcut icon" href='#'>
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+	$.ajax({
+		url : '../BookServ',
+		data : {
+			cmd : 'selectAll'	//data : 서블릿에서 매개변수 값을 불러오는 것
+		},
+		dataType : 'xml',
+		success : loadBookResult,
+		error : function(reject) {
+			console.log(new Error(reject));		//에러 메세지. 원하지 않을 시 -> 'not defined'
+		}
+	});
+	//목록조회 콜백함수
+	function loadBookResult(res) {
+		console.log(res);
+		
+		let xmlDoc = res;
+		let code = xmlDoc.getElementsByTagName('code').item(0).firstChild.nodeValue;
+		if (code == 'success') {
+			let bookList = eval("("
+					+ xmlDoc.getElementsByTagName('data').item(0).firstChild.nodeValue
+					+ ")");
+			console.log(bookList);
+			let listDiv = document.getElementById('bookList');
+			for (let i = 0; i < bookList.length; i++) {
+				let bookDiv = makeBookView(bookList[i]);
+				listDiv.append(bookDiv);
+			}
+		} else if (code == 'error') {
+			let errMsg = xmlDoc.getElementById
+
+		}
+	}
+
+	function makeBookView(book) {
+		let div = document.createElement('div');
+		div.setAttribute('id', 'c' + book.id);
+		div.className = 'book';
+		div.content = book;
+		let str = '<strong>' + book.name + '</strong> ' + book.content
+				+ ' <input type="button" value ="수정" onclick="viewUpdateForm('
+				+ book.id + ')">'
+				+ '<input type="button" value ="삭제" onclick="confirmDelete('
+				+ book.id + ')">';
+		div.innerHTML = str;
+		return div;
+	}
+	//
+	
+
+</script>
+</head>
+
+<body>
+	<div id="bookList"></div>
+	<!-- 등록화면 -->
+	<div id="commentAdd">
+		<form action="" name="addForm">
+			제목 : <input type="text" name="name" size="10"><br> 저자 :
+			<textarea name="content" cols="20" rows="2"></textarea>
+			<br> <input type="button" value="등록" onclick="addBook()">
+		</form>
+	</div>
+	<!-- 수정화면 -->
+	<div id="bookUpdate" style="display: none;">
+		<form action="" name="updateForm">
+			<input type="hidden" name="id" value=""> 제목 :
+			<input type="text" name="name" size="10"><br> 저자 :
+			<textarea name="content" id="" cols="20" rows="2"></textarea><br>
+			<input type="button" value="변경" onclick="updateComment()">
+			<input type="button" value="취소" onclick="cancelUpdate()">
+		</form>
+	</div>
+</body>
+
+</html>
