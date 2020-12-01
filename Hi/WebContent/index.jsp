@@ -15,8 +15,8 @@
 	}
 	
 	function idChk() {
-		var f = document.frm;
-		window.open("")
+		var f = document.frm.mid.value;
+		window.open("Idcheck.do?id="+ id, "childform", "width=400 height=100, resizable = no, scrollbars = no");
 	}
 </script>
 </head>
@@ -25,7 +25,9 @@
 	<form id="frm" name="frm" onsubmit="return valiDate()" action="#" method="post">
 		아이디 : <input type="text" id="mid" name="mid" required="required">&nbsp;&nbsp;
 		<input type="hidden" id="chked" name="chked" value="N">
-		<button type="button" onclick="idChk();">중복 확인</button>
+		<button type="button" onclick="idChk();">중복 확인</button> <p>
+		패스워드 : <input type="password" id="password" name="password" required="required">&nbsp;&nbsp;
+		<input type="hidden" id="chked" name="chked" value="N"> <p>
 		<input type="submit" value="가입하기">
 	</form>
 </div>
